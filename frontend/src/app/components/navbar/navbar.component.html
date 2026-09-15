@@ -1,0 +1,30 @@
+<header class="navbar">
+  <div class="navbar__container">
+    <a routerLink="/" class="navbar__logo">
+      <img
+      src="/images/TerraTitre.webp"
+      alt="Terra Dora"
+    />
+    </a>
+
+    <nav class="navbar__links">
+      <a routerLink="/" routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">
+        Accueil
+      </a>
+
+      <a routerLink="/histoire" routerLinkActive="active">
+        Notre histoire
+      </a>
+
+      <a routerLink="/batiment" routerLinkActive="active">
+        Notre immeuble
+      </a>
+
+      <a routerLink="/contact" routerLinkActive="active">
+        Contact
+      </a>
+    </nav>
+
+  </div>
+</header>

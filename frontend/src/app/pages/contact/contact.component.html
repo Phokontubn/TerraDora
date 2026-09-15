@@ -1,0 +1,151 @@
+<section class="contact-page">
+
+  <div class="container">
+
+    <header class="contact-header">
+
+      <p class="section-label">
+        Contact
+      </p>
+
+      <h1>
+        Parlons de<br />
+        Terra Dora.
+      </h1>
+
+      <p>
+        Vous souhaitez en savoir plus sur notre projet,
+        venir nous rencontrer ou simplement échanger ?
+        Notre porte est ouverte.
+      </p>
+
+    </header>
+
+
+    <div class="contact-layout">
+
+      <div class="contact-info">
+
+        <h2>
+          Écrivez-nous
+        </h2>
+
+        <a href="mailto:contact@terradora.org">
+          contact&#64;terradora.org
+        </a>
+
+      </div>
+
+
+      <form
+        class="contact-form"
+        [formGroup]="contactForm"
+        (ngSubmit)="onSubmit()"
+      >
+
+        <div class="form-field">
+
+          <label for="name">
+            Nom
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Votre nom"
+          >
+
+          @if (
+            contactForm.controls.name.touched &&
+            contactForm.controls.name.invalid
+          ) {
+            <small>
+              Votre nom est obligatoire.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="votre@email.fr"
+          >
+
+          @if (
+            contactForm.controls.email.touched &&
+            contactForm.controls.email.invalid
+          ) {
+            <small>
+              Veuillez saisir une adresse email valide.
+            </small>
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="subject">
+            Sujet
+          </label>
+
+          <input
+            id="subject"
+            type="text"
+            formControlName="subject"
+            placeholder="Le sujet de votre message"
+          >
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="message">
+            Message
+          </label>
+
+          <textarea
+            id="message"
+            rows="7"
+            formControlName="message"
+            placeholder="Votre message..."
+          ></textarea>
+
+          @if (
+            contactForm.controls.message.touched &&
+            contactForm.controls.message.invalid
+          ) {
+            <small>
+              Votre message doit contenir au moins 10 caractères.
+            </small>
+          }
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="button"
+          [disabled]="contactForm.invalid"
+        >
+          Envoyer le message
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>

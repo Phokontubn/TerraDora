@@ -1,0 +1,176 @@
+.container {
+  width: min(100% - 4rem, 1000px);
+  margin: 0 auto;
+}
+
+.timeline-page {
+  padding: 7rem 0 10rem;
+}
+
+.timeline-header {
+  max-width: 750px;
+  margin-bottom: 8rem;
+
+  .section-label {
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+
+  > p:last-child {
+    max-width: 600px;
+    margin-top: 3rem;
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+}
+
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+
+/* TIMELINE */
+
+.timeline {
+  position: relative;
+}
+
+
+/* Ligne centrale */
+
+.timeline::before {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 150px;
+
+  width: 1px;
+
+  background: #d8d8d8;
+}
+
+
+.timeline__item {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 120px 60px 1fr;
+
+  min-height: 220px;
+}
+
+
+/* Année */
+
+.timeline__year {
+  padding-top: 0.2rem;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+
+/* Point */
+
+.timeline__marker {
+  position: relative;
+  z-index: 1;
+
+  width: 14px;
+  height: 14px;
+
+  margin: 0 auto;
+
+  border: 3px solid white;
+  border-radius: 50%;
+
+  background: #222;
+
+  box-shadow: 0 0 0 1px #222;
+}
+
+
+/* Contenu */
+
+.timeline__content {
+  padding-left: 2rem;
+  padding-bottom: 5rem;
+}
+
+.timeline__content h2 {
+  margin: 0 0 1rem;
+
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.timeline__content p {
+  max-width: 600px;
+
+  margin: 0;
+
+  line-height: 1.7;
+  color: #555;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .container {
+    width: min(100% - 2rem, 1000px);
+  }
+
+  .timeline-page {
+    padding: 5rem 0;
+  }
+
+  .timeline-header {
+    margin-bottom: 5rem;
+  }
+
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline__item {
+    grid-template-columns: 30px 1fr;
+    min-height: auto;
+  }
+
+  .timeline__year {
+    grid-column: 2;
+    grid-row: 1;
+
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline__marker {
+    grid-column: 1;
+    grid-row: 1;
+
+    margin: 0;
+  }
+
+  .timeline__content {
+    grid-column: 2;
+
+    padding: 0 0 4rem;
+  }
+
+  .timeline__content h2 {
+    font-size: 1.5rem;
+  }
+}

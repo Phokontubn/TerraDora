@@ -1,0 +1,56 @@
+<section class="timeline-page">
+
+  <div class="container">
+
+    <header class="timeline-header">
+
+      <p class="section-label">
+        Notre histoire
+      </p>
+
+      <h1>
+        Une histoire<br />
+        qui se construit.
+      </h1>
+
+      <p>
+        Découvrez les différentes étapes qui ont permis
+        au projet Terra Dora de prendre vie.
+      </p>
+
+    </header>
+
+
+    <div class="timeline">
+
+      @for (event of events; track event.year + event.title) {
+
+        <article class="timeline__item">
+
+          <div class="timeline__year">
+            {{ event.year }}
+          </div>
+
+          <div class="timeline__marker"></div>
+
+          <div class="timeline__content">
+
+            <h2>
+              {{ event.title }}
+            </h2>
+
+            <p>
+              {{ event.description }}
+            </p>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  </div>
+
+</section>
