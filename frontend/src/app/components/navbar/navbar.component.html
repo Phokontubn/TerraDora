@@ -1,27 +1,61 @@
 <header class="navbar">
   <div class="navbar__container">
-    <a routerLink="/" class="navbar__logo">
-      <img
-      src="/images/TerraTitre.webp"
-      alt="Terra Dora"
-    />
+
+    <a
+      routerLink="/"
+      class="navbar__logo"
+      (click)="closeMenu()"
+    >
+      <img src="/images/TerraTitre.webp" alt="Terra Dora" />
     </a>
 
-    <nav class="navbar__links">
-      <a routerLink="/" routerLinkActive="active"
-         [routerLinkActiveOptions]="{ exact: true }">
+    <button
+      class="navbar__burger"
+      type="button"
+      aria-label="Ouvrir le menu"
+      [class.navbar__burger--open]="menuOpen"
+      [attr.aria-expanded]="menuOpen"
+      (click)="toggleMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      class="navbar__links"
+      [class.navbar__links--open]="menuOpen"
+    >
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeMenu()"
+      >
         Accueil
       </a>
 
-      <a routerLink="/histoire" routerLinkActive="active">
+      <a
+        routerLink="/histoire"
+        routerLinkActive="active"
+        (click)="closeMenu()"
+      >
         Notre histoire
       </a>
 
-      <a routerLink="/batiment" routerLinkActive="active">
+      <a
+        routerLink="/batiment"
+        routerLinkActive="active"
+        (click)="closeMenu()"
+      >
         Notre immeuble
       </a>
 
-      <a routerLink="/contact" routerLinkActive="active">
+      <a
+        routerLink="/contact"
+        routerLinkActive="active"
+        (click)="closeMenu()"
+      >
         Contact
       </a>
     </nav>

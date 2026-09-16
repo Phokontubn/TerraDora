@@ -1,176 +1,410 @@
-.container {
-  width: min(100% - 4rem, 1000px);
-  margin: 0 auto;
+:host {
+  --cream: #f4ecdc;
+  --cream-light: #fbf7ef;
+  --green: #344b38;
+  --green-dark: #263b2c;
+  --sage: #98a69a;
+  --ochre: #d9a66a;
 }
 
-.timeline-page {
-  padding: 7rem 0 10rem;
-}
+/* =========================
+   INTRO
+========================= */
 
-.timeline-header {
-  max-width: 750px;
-  margin-bottom: 8rem;
+.history-hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  background: var(--cream);
+  padding: 80px 24px;
 
-  .section-label {
-    margin-bottom: 2rem;
+  &__inner {
+    width: min(1100px, 100%);
+    margin: 0 auto;
   }
 
   h1 {
-    margin: 0;
-    font-size: clamp(3.5rem, 8vw, 6rem);
+    margin: 20px 0 28px;
+    max-width: 800px;
+    color: var(--green-dark);
+    font-size: clamp(3rem, 7vw, 6.5rem);
     line-height: 0.95;
-    letter-spacing: -0.04em;
+    font-weight: 500;
+
+    em {
+      color: var(--ochre);
+      font-weight: 400;
+    }
   }
 
-  > p:last-child {
-    max-width: 600px;
-    margin-top: 3rem;
-    font-size: 1.2rem;
+  p {
+    max-width: 520px;
+    color: var(--green);
+    font-size: 1.15rem;
     line-height: 1.7;
   }
+
+  &__scroll {
+    display: inline-flex;
+    gap: 12px;
+    margin-top: 50px;
+    color: var(--green);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
 }
 
-.section-label {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
 
+/* =========================
+   SCÈNE
+========================= */
 
-/* TIMELINE */
-
-.timeline {
+.history {
   position: relative;
+  background: var(--cream-light);
+  overflow: clip;
+
+  &__background {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__land {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 18%;
+    border-top: 1px solid rgba(52, 75, 56, 0.18);
+
+    background:
+      repeating-linear-gradient(
+        -8deg,
+        transparent 0,
+        transparent 12px,
+        rgba(217, 166, 106, 0.08) 13px,
+        rgba(217, 166, 106, 0.08) 14px
+      );
+  }
+
+  &__building {
+    position: absolute;
+    width: min(700px, 70vw);
+    height: 55vh;
+    left: 50%;
+    bottom: 12%;
+    transform: translateX(-50%);
+
+    opacity: 0.13;
+  }
+
+  &__building-part {
+    position: absolute;
+    border: 2px solid var(--green);
+
+    &--1 {
+      width: 70%;
+      height: 20%;
+      bottom: 0;
+      left: 15%;
+    }
+
+    &--2 {
+      width: 55%;
+      height: 20%;
+      bottom: 20%;
+      left: 22%;
+    }
+
+    &--3 {
+      width: 40%;
+      height: 20%;
+      bottom: 40%;
+      left: 30%;
+    }
+  }
+
+
+  /* =========================
+     LIGNE
+  ========================= */
+
+  &__line {
+    position: absolute;
+    top: 0;
+    bottom: 300px;
+    left: 50%;
+    width: 1px;
+
+    background:
+      linear-gradient(
+        to bottom,
+        transparent,
+        var(--green) 3%,
+        var(--green) 97%,
+        transparent
+      );
+
+    opacity: 0.35;
+    z-index: 1;
+  }
+
+
+  /* =========================
+     ÉVÉNEMENTS
+  ========================= */
+
+  &__events {
+    position: relative;
+    z-index: 2;
+    width: min(1180px, calc(100% - 48px));
+    margin: -100vh auto 0;
+    padding: 35vh 0;
+  }
 }
 
 
-/* Ligne centrale */
+/* =========================
+   EVENT
+========================= */
 
-.timeline::before {
-  content: '';
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 150px;
-
-  width: 1px;
-
-  background: #d8d8d8;
-}
-
-
-.timeline__item {
+.history-event {
   position: relative;
 
   display: grid;
-  grid-template-columns: 120px 60px 1fr;
+  grid-template-columns: 1fr 120px 1fr;
+  align-items: center;
 
-  min-height: 220px;
+  min-height: 100vh;
+
+  &__year {
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    transform: translateX(-50%);
+
+    color: rgba(52, 75, 56, 0.12);
+    font-size: clamp(5rem, 12vw, 11rem);
+    font-weight: 600;
+
+    z-index: -1;
+  }
+
+  &__visual {
+    position: relative;
+    width: min(470px, 100%);
+
+    img:not(.history-event__memory) {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+
+      border-radius: 2px;
+
+      box-shadow:
+        0 20px 50px rgba(38, 59, 44, 0.13);
+
+      transform: rotate(-1.5deg);
+    }
+
+    &--placeholder {
+      aspect-ratio: 4 / 3;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px dashed rgba(52, 75, 56, 0.3);
+
+      color: rgba(52, 75, 56, 0.55);
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  &__memory {
+    position: absolute;
+    width: 55%;
+    height: auto;
+    right: -12%;
+    bottom: -18%;
+
+    filter: drop-shadow(0 12px 12px rgba(38, 59, 44, 0.12));
+
+    transform: rotate(4deg);
+  }
+
+  &__content {
+    max-width: 390px;
+
+    time {
+      color: var(--ochre);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    h2 {
+      margin: 10px 0 16px;
+      color: var(--green-dark);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      font-weight: 500;
+    }
+
+    p {
+      color: var(--green);
+      line-height: 1.7;
+    }
+  }
+
+  &--left {
+    .history-event__visual {
+      grid-column: 1;
+      justify-self: end;
+    }
+
+    .history-event__content {
+      grid-column: 3;
+      padding-left: 40px;
+    }
+  }
+
+  &--right {
+    .history-event__visual {
+      grid-column: 3;
+    }
+
+    .history-event__content {
+      grid-column: 1;
+      grid-row: 1;
+
+      justify-self: end;
+      padding-right: 40px;
+      text-align: right;
+    }
+  }
+
+  &--major {
+    min-height: 125vh;
+  }
 }
 
 
-/* Année */
+/* =========================
+   FIN
+========================= */
 
-.timeline__year {
-  padding-top: 0.2rem;
-
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-
-/* Point */
-
-.timeline__marker {
+.history__continuation {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 
-  width: 14px;
-  height: 14px;
+  min-height: 80vh;
 
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  border: 3px solid white;
-  border-radius: 50%;
+  text-align: center;
 
-  background: #222;
+  background: var(--cream);
 
-  box-shadow: 0 0 0 1px #222;
-}
-
-
-/* Contenu */
-
-.timeline__content {
-  padding-left: 2rem;
-  padding-bottom: 5rem;
-}
-
-.timeline__content h2 {
-  margin: 0 0 1rem;
-
-  font-size: 2rem;
-  line-height: 1.1;
-}
-
-.timeline__content p {
-  max-width: 600px;
-
-  margin: 0;
-
-  line-height: 1.7;
-  color: #555;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 700px) {
-
-  .container {
-    width: min(100% - 2rem, 1000px);
+  span {
+    color: var(--ochre);
+    font-size: 2rem;
   }
 
-  .timeline-page {
-    padding: 5rem 0;
+  p {
+    margin: 30px 0 4px;
+
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
   }
 
-  .timeline-header {
-    margin-bottom: 5rem;
-  }
-
-  .timeline::before {
-    left: 10px;
-  }
-
-  .timeline__item {
-    grid-template-columns: 30px 1fr;
-    min-height: auto;
-  }
-
-  .timeline__year {
-    grid-column: 2;
-    grid-row: 1;
-
-    margin-bottom: 0.75rem;
-  }
-
-  .timeline__marker {
-    grid-column: 1;
-    grid-row: 1;
-
+  h2 {
     margin: 0;
+
+    color: var(--green-dark);
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 400;
+  }
+}
+
+
+/* =========================
+   TABLETTE / MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+  .history-hero {
+    min-height: 70vh;
   }
 
-  .timeline__content {
-    grid-column: 2;
+  .history {
+    &__line {
+      left: 28px;
+    }
 
-    padding: 0 0 4rem;
+    &__building {
+      width: 90vw;
+      opacity: 0.07;
+    }
+
+    &__events {
+      width: calc(100% - 40px);
+      padding-left: 45px;
+    }
   }
 
-  .timeline__content h2 {
-    font-size: 1.5rem;
+  .history-event {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 32px;
+    min-height: auto;
+    padding: 100px 0;
+
+    &__year {
+      left: 0;
+      top: 35px;
+      transform: none;
+
+      font-size: 5rem;
+    }
+
+    &__visual {
+      width: 100%;
+    }
+
+    &__content {
+      max-width: 100%;
+    }
+
+    &--left,
+    &--right {
+      .history-event__visual,
+      .history-event__content {
+        padding: 0;
+        text-align: left;
+      }
+    }
+
+    &--major {
+      min-height: auto;
+      padding: 140px 0;
+    }
+
+    &__memory {
+      right: -4%;
+      bottom: -12%;
+      width: 52%;
+    }
   }
 }
