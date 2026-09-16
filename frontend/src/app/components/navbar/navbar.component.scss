@@ -1,50 +1,178 @@
 .navbar {
-
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 100;
 
   padding: 1rem 2rem;
-  border-bottom: 1px solid #e5e5e5;
+
   background: #f4ecdc;
+  border-bottom: 1px solid rgba(52, 75, 56, 0.12);
 
   &__container {
+    position: relative;
+
     max-width: 1200px;
     margin: 0 auto;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    gap: 2rem;
   }
 
+  // -------------------------
+  // Logo
+  // -------------------------
+
   &__logo {
+    position: relative;
+    z-index: 102;
+
     display: flex;
     align-items: center;
 
     img {
       display: block;
-
       width: auto;
       height: 55px;
-
       object-fit: contain;
     }
   }
 
+  // -------------------------
+  // Navigation desktop
+  // -------------------------
+
   &__links {
     display: flex;
+    align-items: center;
     gap: 2rem;
 
     a {
-      text-decoration: none;
       color: #344b38;
+      text-decoration: none;
 
-      &:hover,
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 0.65;
+      }
+
       &.active {
         font-weight: 600;
       }
     }
   }
+
+  // -------------------------
+  // Burger
+  // -------------------------
+
+  &__burger {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+
+    span {
+      display: block;
+
+      width: 26px;
+      height: 2px;
+
+      margin: 6px auto;
+
+      background: #344b38;
+
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+    }
+  }
 }
 
+
+// ==================================================
+// TABLETTE + MOBILE
+// ==================================================
+
+@media (max-width: 850px) {
+  .navbar {
+    padding: 0.8rem 1.25rem;
+
+    &__logo img {
+      height: 48px;
+    }
+
+    &__burger {
+      position: relative;
+      z-index: 102;
+      right: 20%;
+
+      display: block;
+    }
+
+    &__links {
+      position: absolute;
+
+      top: calc(100% + 0.8rem);
+      left: -1.25rem;
+      right: -1.25rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      gap: 0;
+
+      padding: 1rem 1.5rem 1.5rem;
+
+      background: #f4ecdc;
+
+      border-bottom: 1px solid rgba(52, 75, 56, 0.15);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transform: translateY(-10px);
+
+      pointer-events: none;
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s;
+
+      a {
+        padding: 1rem 0;
+
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.4rem;
+
+        border-bottom: 1px solid rgba(52, 75, 56, 0.12);
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+
+      &--open {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0);
+
+        pointer-events: auto;
+      }
+    }
+  }
+}

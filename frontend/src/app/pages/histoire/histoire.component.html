@@ -1,56 +1,157 @@
-<section class="timeline-page">
+<section class="history-hero">
+  <div class="history-hero__inner">
+    <p class="section-label">Notre histoire</p>
 
-  <div class="container">
+    <h1>
+      Une aventure collective<br />
+      <em>qui prend racine.</em>
+    </h1>
 
-    <header class="timeline-header">
+    <p>
+      Des premières rencontres à l'entrée dans les lieux,
+      voici quelques moments qui ont jalonné notre chemin.
+    </p>
 
-      <p class="section-label">
-        Notre histoire
-      </p>
+    <span class="history-hero__scroll">
+      Faire défiler
+      <span aria-hidden="true">↓</span>
+    </span>
+  </div>
+</section>
 
-      <h1>
-        Une histoire<br />
-        qui se construit.
-      </h1>
+<section class="history">
 
-      <p>
-        Découvrez les différentes étapes qui ont permis
-        au projet Terra Dora de prendre vie.
-      </p>
+  <!-- Le décor qui reste derrière pendant le scroll -->
+  <div class="history__background" aria-hidden="true">
+    <div class="history__land"></div>
 
-    </header>
-
-
-    <div class="timeline">
-
-      @for (event of events; track event.year + event.title) {
-
-        <article class="timeline__item">
-
-          <div class="timeline__year">
-            {{ event.year }}
-          </div>
-
-          <div class="timeline__marker"></div>
-
-          <div class="timeline__content">
-
-            <h2>
-              {{ event.title }}
-            </h2>
-
-            <p>
-              {{ event.description }}
-            </p>
-
-          </div>
-
-        </article>
-
-      }
-
+    <div class="history__building">
+      <div class="history__building-part history__building-part--1"></div>
+      <div class="history__building-part history__building-part--2"></div>
+      <div class="history__building-part history__building-part--3"></div>
     </div>
+  </div>
+
+  <!-- Ligne narrative -->
+  <div class="history__line" aria-hidden="true"></div>
+
+  <div class="history__events">
+
+    <!-- 2017 -->
+    <article class="history-event history-event--left">
+      <div class="history-event__year">2017</div>
+
+      <div class="history-event__visual">
+        <img
+          src="/images/histoire/frise-01a.jpg"
+          alt="Réunion du collectif"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="history-event__content">
+        <time datetime="2017-02">02 / 2017</time>
+        <h2>Une première mise en pratique</h2>
+        <p>
+          Sollicitation du promoteur MMA Vinci pour la
+          réhabilitation d'un bâtiment existant.
+        </p>
+      </div>
+    </article>
+
+    <!-- 2018 -->
+    <article class="history-event history-event--right">
+      <div class="history-event__year">2018</div>
+
+      <div class="history-event__visual">
+        <img
+          src="/images/histoire/frise-03a.jpg"
+          alt="Visite du terrain par le collectif"
+          loading="lazy"
+        />
+
+        <img
+          class="history-event__memory"
+          src="/images/histoire/frise-03.png"
+          alt=""
+          loading="lazy"
+        />
+      </div>
+
+      <div class="history-event__content">
+        <time datetime="2018-09">09 / 2018</time>
+        <h2>Le début du concret</h2>
+        <p>
+          Le groupe découvre le terrain et matérialise
+          l'emprise du futur bâtiment.
+        </p>
+      </div>
+    </article>
+
+    <!-- 2022 -->
+    <article class="history-event history-event--left history-event--major">
+      <div class="history-event__year">2022</div>
+
+      <div class="history-event__visual history-event__visual--placeholder">
+        <span>Photo première pierre</span>
+      </div>
+
+      <div class="history-event__content">
+        <time datetime="2022-06-03">03 / 06 / 2022</time>
+        <h2>La première pierre</h2>
+        <p>
+          Après plusieurs années de préparation,
+          le projet commence à sortir de terre.
+        </p>
+      </div>
+    </article>
+
+    <!-- 2025 -->
+    <article class="history-event history-event--right history-event--major">
+      <div class="history-event__year">2025</div>
+
+      <div class="history-event__visual history-event__visual--placeholder">
+        <span>Photo remise des clés</span>
+      </div>
+
+      <div class="history-event__content">
+        <time datetime="2025-03">03 / 2025</time>
+        <h2>Enfin chez nous</h2>
+        <p>
+          Entrée dans les lieux et remise des clés.
+          Le projet devient un lieu de vie.
+        </p>
+      </div>
+    </article>
+
+    <!-- 2026 -->
+    <article class="history-event history-event--left">
+      <div class="history-event__year">2026</div>
+
+      <div class="history-event__visual history-event__visual--placeholder">
+        <span>Photo soupe des 1 an</span>
+      </div>
+
+      <div class="history-event__content">
+        <time datetime="2026-03-25">25 / 03 / 2026</time>
+        <h2>La soupe des 1 an</h2>
+        <p>
+          De la réalisation de l'affiche à ce joli moment :
+          une nouvelle page de la vie du collectif.
+        </p>
+      </div>
+    </article>
 
   </div>
+
+  <footer class="history__continuation">
+    <span aria-hidden="true">↓</span>
+
+    <p>Et la suite</p>
+
+    <h2>
+      s'écrit ensemble…
+    </h2>
+  </footer>
 
 </section>
