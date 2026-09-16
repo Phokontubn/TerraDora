@@ -75,16 +75,6 @@
   padding: 4rem 0 8rem;
 }
 
-.hero__eyebrow {
-  margin: 0 0 1.5rem;
-
-  font-size: 0.75rem;
-  font-weight: 700;
-
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-}
-
 .hero h1 {
   margin: 0;
 
@@ -310,217 +300,373 @@
 
   // Cartes aux formes organiques fluides
   .value-card {
+    // -------------------------------
+    // Valeurs par défaut = carte 01
+    // -------------------------------
+
+    --card-bg: #f3e7d3;
+    --bubble-bg: #818f78;
+
+    --container-mask: url('/svg/containerv1.png');
+    --photo-mask: url('/svg/photov1.png');
+    --bubble-mask: url('/svg/bubblev1.png');
+
+    --photo-top: -10px;
+    --photo-right: -10px;
+    --photo-width: 58%;
+    --photo-height: 106%;
+    --photo-position: center;
+
+    --bubble-bottom: -5px;
+    --bubble-right: -10px;
+    --bubble-width: 180px;
+    --bubble-height: 110px;
+    --bubble-rotation: -1deg;
+
     position: relative;
+
     width: 100%;
     max-width: 520px;
     min-height: 320px;
+
     display: flex;
     align-items: center;
+    
+
     padding: 30px;
     box-sizing: border-box;
 
-    // Garantit que la photo et la bulle qui dépassent ne soient pas coupées par le conteneur parent
     overflow: visible;
 
+
+    // -------------------------------
+    // Fond
+    // -------------------------------
+
     &__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+
+      background-color: var(--card-bg);
+
+      -webkit-mask-image: var(--container-mask);
+      mask-image: var(--container-mask);
+
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+
+
+    // -------------------------------
+    // Texte
+    // -------------------------------
+
+    &__content {
+      position: relative;
+      z-index: 3;
+
+      max-width: 210px;
+
+      pointer-events: auto;
+
+      .value-card__number {
+        display: block;
+
+        margin-bottom: 12px;
+
+        color: #d49556;
+
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 2.2rem;
+      }
+
+      h3 {
+        margin: 0 0 12px;
+
+        color: #2c2b29;
+
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 1.15;
+      }
+
+      p {
+        margin: 0;
+
+        color: #555047;
+
+        font-size: 0.88rem;
+        line-height: 1.4;
+      }
+    }
+
+
+    // -------------------------------
+    // Photo
+    // -------------------------------
+
+    &__photo {
+      position: absolute;
+
+      top: var(--photo-top);
+      right: var(--photo-right);
+
+      width: var(--photo-width);
+      height: var(--photo-height);
+
+      z-index: 2;
+
+      pointer-events: none;
+
+      -webkit-mask-image: var(--photo-mask);
+      mask-image: var(--photo-mask);
+
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+
+      img {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+        object-position: var(--photo-position);
+      }
+    }
+
+
+    // -------------------------------
+    // Bulle
+    // -------------------------------
+
+    &__bubble {
+      position: absolute;
+
+      right: var(--bubble-right);
+      bottom: var(--bubble-bottom);
+
+      width: var(--bubble-width);
+      height: var(--bubble-height);
+
+      z-index: 4;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      background-color: var(--bubble-bg);
+
+      transform: rotate(var(--bubble-rotation));
+
+      -webkit-mask-image: var(--bubble-mask);
+      mask-image: var(--bubble-mask);
+
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+
+      span {
+        padding: 0 12px;
+
+        color: white;
+
+        font-family: 'Caveat', cursive;
+        font-size: 1rem;
+        line-height: 1.1;
+        width: 70%;
+        margin-right: 10%;
+
+        text-align: right;
+      }
+    }
+  }
+
+  .value-card--v2,
+  .value-card--v3,
+  .value-card--v4 {
+    .value-card__bubble {
+      justify-content: center; 
+
+      span {
+        width: 100%;
+        margin-right: 0; 
+        text-align: center;
+      }
+    }
+  }
+
+  .value-card--v2 {
+  --card-bg: #dfe2d2;
+  --bubble-bg: #d29d56;
+
+  --container-mask: url('/svg/containerv2.png');
+  --photo-mask: url('/svg/photov2.png');
+  --bubble-mask: url('/svg/bubblev2.png');
+}
+
+.value-card--v3 {
+  --card-bg: #cad0ba;
+  --bubble-bg: #596a56;
+
+  --container-mask: url('/svg/containerv3.png');
+  --photo-mask: url('/svg/photov3.png');
+  --bubble-mask: url('/svg/bubblev3.png');
+
+  --photo-position: 67%;
+
+  --bubble-bottom: -10px;
+  --bubble-right: -15px;
+  --bubble-width: 190px;
+  --bubble-height: 100px;
+  --bubble-rotation: 2deg;
+}
+
+.value-card--v4 {
+  --card-bg: #f3e6d2;
+
+
+  --container-mask: url('/svg/containerv4.png');
+  --photo-mask: url('/svg/photov4.png');
+  --bubble-mask: url('/svg/bubblev4.png');
+
+  --photo-top: -30px;
+  --photo-right: -20px;
+  --photo-width: 78%;
+  --photo-height: 115%;
+  --photo-position: 0% 30%;
+
+  --bubble-bottom: 8px;
+  --bubble-right: -12px;
+  --bubble-width: 185px;
+  --bubble-height: 105px;
+}
+
+  .value-card--v5 {
+    // 1. Force l'élément à occuper toute la largeur dans une grille CSS
+    grid-column: 1 / -1;
+    max-width: 100%; 
+    min-height: 220px; 
+    justify-content: space-between;
+    padding: 30px 40px;
+
+    // Fond beige avec containerv5.png
+    .value-card__bg {
       position: absolute;
       inset: 0;
       background-color: #eee8dc;
       z-index: 1;
 
-      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" preserveAspectRatio="none"><path d="M 30,15 C 150,8 350,12 470,25 C 490,30 495,100 490,200 C 485,290 480,305 460,305 C 320,312 120,310 40,300 C 20,295 15,220 18,120 C 20,40 22,18 30,15 Z" fill="black"/></svg>');
-      mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" preserveAspectRatio="none"><path d="M 30,15 C 150,8 350,12 470,25 C 490,30 495,100 490,200 C 485,290 480,305 460,305 C 320,312 120,310 40,300 C 20,295 15,220 18,120 C 20,40 22,18 30,15 Z" fill="black"/></svg>');
+      -webkit-mask-image: url('/svg/containerv5.png');
+      mask-image: url('/svg/containerv5.png');
       -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
     }
 
-    &__content {
+    // Contenu texte (plus large pour occuper la bande horizontale)
+    .value-card__content {
       position: relative;
       z-index: 3;
-      max-width: 210px;
-      // Empêche le texte de basculer sous la photo
-      pointer-events: auto;
+      max-width: 50%; // Laisse de la place pour la photo à droite
 
       .value-card__number {
         display: block;
         font-family: 'Playfair Display', Georgia, serif;
         font-size: 2.2rem;
         color: #d49556;
-        margin-bottom: 12px;
+        margin-bottom: 8px;
       }
 
       h3 {
         font-family: 'Playfair Display', Georgia, serif;
         font-size: 1.6rem;
         line-height: 1.15;
-        margin: 0 0 12px 0;
+        margin: 0 0 8px 0;
         color: #2c2b29;
       }
 
       p {
-        font-size: 0.88rem;
+        font-size: 0.9rem;
         line-height: 1.4;
         color: #555047;
         margin: 0;
       }
     }
 
-    &__photo {
+    // Photo adaptée à la hauteur réduite
+    .value-card__photo {
       position: absolute;
-      top: -10px;
-      right: -10px;
-      width: 58%;
-      height: 106%;
-      z-index: 2;
+      top: -20px;
+      left: 40%;
+      width: 42%;
+      height: 110%;
+      z-index: 4;
       pointer-events: none;
 
-      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 350" preserveAspectRatio="none"><path d="M 60,20 C 120,10 220,5 280,25 C 295,40 295,180 280,310 C 275,325 260,330 240,330 C 180,332 80,332 20,310 C 5,280 15,150 25,80 C 35,35 45,22 60,20 Z" fill="black"/></svg>');
-      mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 350" preserveAspectRatio="none"><path d="M 60,20 C 120,10 220,5 280,25 C 295,40 295,180 280,310 C 275,325 260,330 240,330 C 180,332 80,332 20,310 C 5,280 15,150 25,80 C 35,35 45,22 60,20 Z" fill="black"/></svg>');
+      -webkit-mask-image: url('/svg/photov5.png');
+      mask-image: url('/svg/photov5.png');
       -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: 20% 20%;
+
       }
     }
 
-    &__bubble {
+    // Bulle étirée horizontalement
+    .value-card__bubble {
       position: absolute;
-      bottom: -8px;
-      right: -20px;
-      width: 180px;
-      height: 110px;
-      transform: rotate(4deg);
-      background-color: #596a56;
-      z-index: 4;
+      bottom: -30px;
+      left: 32%;
+      width: 70%; // Élargie pour suivre le format du masque bubblev5
+      height: 120%;
+      transform: rotate(-1deg);
+      background-color: #e1b673;
+      z-index: 3;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
 
-      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" preserveAspectRatio="none"><path d="M 10,110 C 50,110 100,108 150,95 C 185,80 200,50 185,25 C 170,5 140,0 100,20 C 50,45 15,80 10,110 Z" fill="black"/></svg>');
-      mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" preserveAspectRatio="none"><path d="M 10,110 C 50,110 100,108 150,95 C 185,80 200,50 185,25 C 170,5 140,0 100,20 C 50,45 15,80 10,110 Z" fill="black"/></svg>');
+      -webkit-mask-image: url('/svg/bubblev5.png');
+      mask-image: url('/svg/bubblev5.png');
       -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
 
       span {
         font-family: 'Caveat', cursive;
-        font-size: 1rem;
+        font-size: 1.2rem;
         line-height: 1.1;
         color: #ffffff;
         text-align: center;
-        padding-left: 15px;
+        width: 30%;
+        margin-right: 7%;
+        margin-bottom: 7%;
+        padding: 0 16px;
+        box-sizing: border-box;
       }
     }
   }
 
-  .value-card--v2 {
-  position: relative;
-  width: 100%;
-  max-width: 520px;
-  min-height: 320px;
-  display: flex;
-  align-items: center;
-  padding: 30px;
-  box-sizing: border-box;
-  overflow: visible;
-
-  // 1. Fond beige découpé par containerv2
-  .value-card__bg {
-    position: absolute;
-    inset: 0;
-    background-color: #eee8dc;
-    z-index: 1;
-
-    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" preserveAspectRatio="none"><path d="M 45,12 C 180,20 360,8 465,15 C 485,25 492,90 488,190 C 485,280 490,305 465,310 C 330,308 140,312 35,302 C 15,295 10,210 12,110 C 15,35 22,10 45,12 Z" fill="black"/></svg>');
-    mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" preserveAspectRatio="none"><path d="M 45,12 C 180,20 360,8 465,15 C 485,25 492,90 488,190 C 485,280 490,305 465,310 C 330,308 140,312 35,302 C 15,295 10,210 12,110 C 15,35 22,10 45,12 Z" fill="black"/></svg>');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-  }
-
-  // Texte
-  .value-card__content {
-    position: relative;
-    z-index: 3;
-    max-width: 210px;
-    pointer-events: auto;
-
-    .value-card__number {
-      display: block;
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 2.2rem;
-      color: #d49556;
-      margin-bottom: 12px;
-    }
-
-    h3 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.6rem;
-      line-height: 1.15;
-      margin: 0 0 12px 0;
-      color: #2c2b29;
-    }
-
-    p {
-      font-size: 0.88rem;
-      line-height: 1.4;
-      color: #555047;
-      margin: 0;
-    }
-  }
-
-  // 2. Photo découpée par photov2
-  .value-card__photo {
-    position: absolute;
-    top: -8px;
-    right: -12px;
-    width: 58%;
-    height: 105%;
-    z-index: 2;
-    pointer-events: none;
-
-    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 350" preserveAspectRatio="none"><path d="M 50,15 C 130,5 230,8 285,20 C 295,45 292,180 285,315 C 270,330 250,335 220,332 C 160,330 70,338 25,305 C 10,270 12,140 20,70 C 28,30 38,18 50,15 Z" fill="black"/></svg>');
-    mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 350" preserveAspectRatio="none"><path d="M 50,15 C 130,5 230,8 285,20 C 295,45 292,180 285,315 C 270,330 250,335 220,332 C 160,330 70,338 25,305 C 10,270 12,140 20,70 C 28,30 38,18 50,15 Z" fill="black"/></svg>');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  // 3. Bulle découpée par bubblev2
-  .value-card__bubble {
-    position: absolute;
-    bottom: -10px;
-    right: -18px;
-    width: 175px;
-    height: 105px;
-    transform: rotate(-3deg);
-    background-color: #596a56;
-    z-index: 4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" preserveAspectRatio="none"><path d="M 15,100 C 55,105 105,100 155,90 C 185,75 195,45 180,20 C 165,5 130,5 95,25 C 45,40 20,75 15,100 Z" fill="black"/></svg>');
-    mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" preserveAspectRatio="none"><path d="M 15,100 C 55,105 105,100 155,90 C 185,75 195,45 180,20 C 165,5 130,5 95,25 C 45,40 20,75 15,100 Z" fill="black"/></svg>');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-
-    span {
-      font-family: 'Caveat', cursive;
-      font-size: 1rem;
-      line-height: 1.1;
-      color: #ffffff;
-      text-align: center;
-      padding-left: 10px;
-    }
-  }
-}
 }
 
 /* ---------------------------------
@@ -834,10 +980,6 @@
     border-radius: 3rem;
   }
 
-  .values__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .value-card {
     border-bottom: 1px solid rgba(52, 75, 56, 0.15);
   }
@@ -851,6 +993,15 @@
   .building-preview__intro {
     position: static;
   }
+  
+    .hero__note {
+    display: none;
+  }
+
+  .value-card--v5 {
+    display: none;
+  }
+
 }
 
 
@@ -912,7 +1063,6 @@
     gap: 2.5rem;
   }
 
-  .values__grid,
   .building-preview__features {
     grid-template-columns: 1fr;
   }
