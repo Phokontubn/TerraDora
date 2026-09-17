@@ -34,10 +34,10 @@ import {
   withI18nSupport,
   withIncrementalHydration,
   withNoHttpTransferCache
-} from "./chunk-FRAIW3K3.js";
+} from "./chunk-KL5OD7VG.js";
 import {
   getDOM
-} from "./chunk-LXUPEWB4.js";
+} from "./chunk-HVIJOKJO.js";
 import "./chunk-3ZEMIUMS.js";
 export {
   BrowserModule,

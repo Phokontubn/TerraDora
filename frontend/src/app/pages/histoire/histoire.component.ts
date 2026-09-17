@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  OnDestroy,
+  PLATFORM_ID
+} from '@angular/core';
 
-interface TimelineEvent {
-  year: string;
-  title: string;
-  description: string;
-}
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-histoire',
@@ -12,32 +15,53 @@ interface TimelineEvent {
   templateUrl: './histoire.component.html',
   styleUrl: './histoire.component.scss'
 })
-export class HistoireComponent {
+export class HistoireComponent implements AfterViewInit, OnDestroy {
 
-  events: TimelineEvent[] = [
-    {
-      year: '20XX',
-      title: 'La naissance du projet',
-      description:
-        'Terra Dora commence à imaginer un projet d’habitat participatif fondé sur le partage et la solidarité.'
-    },
-    {
-      year: '20XX',
-      title: 'Les premières rencontres',
-      description:
-        'Le collectif se construit et les premières réflexions autour du projet prennent forme.'
-    },
-    {
-      year: '20XX',
-      title: 'Le projet prend forme',
-      description:
-        'Le groupe avance ensemble et précise progressivement sa vision de l’habitat et de la vie collective.'
-    },
-    {
-      year: '20XX',
-      title: 'Aujourd’hui',
-      description:
-        'Terra Dora continue de faire vivre son projet et souhaite partager ses aspirations avec le quartier.'
+  private observer?: IntersectionObserver;
+
+  constructor(
+    private elementRef: ElementRef<HTMLElement>,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {}
+
+
+  ngAfterViewInit(): void {
+
+    // IntersectionObserver n'existe que dans le navigateur
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
     }
-  ];
+
+    const memories =
+      this.elementRef.nativeElement
+        .querySelectorAll<HTMLElement>('.memory');
+
+
+    this.observer = new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.25
+      }
+    );
+
+
+    memories.forEach(memory => {
+      this.observer?.observe(memory);
+    });
+  }
+
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
+  }
 }
