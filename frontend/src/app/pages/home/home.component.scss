@@ -272,9 +272,20 @@
     padding-top: 20px;
 
     &::before {
-      content: "\\ \\ /";
+      content: "\\ \\ \\ / /";
       position: absolute;
       top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      color: #666;
+    }
+
+    &::after {
+      content: "/ / / \\ \\ ";
+      position: absolute;
+      top: 80px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 0.9rem;

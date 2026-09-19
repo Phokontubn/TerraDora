@@ -22,7 +22,7 @@ export class HistoireComponent implements AfterViewInit, OnDestroy {
   constructor(
     private elementRef: ElementRef<HTMLElement>,
     @Inject(PLATFORM_ID) private platformId: object
-  ) {}
+  ) { }
 
 
   ngAfterViewInit(): void {
@@ -44,6 +44,14 @@ export class HistoireComponent implements AfterViewInit, OnDestroy {
 
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
+            const stage =
+              (entry.target as HTMLElement).dataset['stage'];
+
+            if (stage !== undefined) {
+              this.elementRef.nativeElement
+                .querySelector('.timeline')
+                ?.setAttribute('data-current-stage', stage);
+            }
           }
 
         });

@@ -97,7 +97,234 @@
     font-size: 1.6rem;
   }
 }
+/* =========================================================
+ BACKGROUND ANIMATION
+========================================================= */ 
 
+.story-world {
+  position: sticky;
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  margin-bottom: -100vh;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  z-index: 0;
+
+
+  &__sky {
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(
+        circle at 75% 25%,
+        rgba(217, 166, 106, 0.12),
+        transparent 35%
+      );
+  }
+
+
+  &__ground {
+    position: absolute;
+
+    left: -10%;
+    right: -10%;
+    bottom: 7%;
+
+    height: 14%;
+
+    border-top:
+      2px solid rgba(52, 75, 56, 0.15);
+
+    transform: rotate(-1deg);
+
+    background:
+      repeating-linear-gradient(
+        -7deg,
+        transparent 0,
+        transparent 18px,
+        rgba(52, 75, 56, 0.035) 19px,
+        rgba(52, 75, 56, 0.035) 20px
+      );
+  }
+
+
+  &__building {
+    position: absolute;
+
+    left: 50%;
+    bottom: 11%;
+
+    width: min(520px, 42vw);
+    height: 55vh;
+
+    transform: translateX(-50%);
+
+    opacity: 0.13;
+  }
+
+
+  &__plant {
+    position: absolute;
+
+    bottom: 12%;
+
+    color: var(--green);
+
+    opacity: 0;
+
+    font-size: 3rem;
+
+    &--1 {
+      left: 18%;
+    }
+
+    &--2 {
+      right: 17%;
+    }
+  }
+}
+
+
+.building__floor {
+  position: absolute;
+
+  left: 0;
+
+  width: 100%;
+  height: 27%;
+
+  border:
+    2px solid var(--green);
+
+  background:
+    rgba(244, 236, 220, 0.45);
+
+  transform-origin: bottom;
+
+  transition:
+    opacity 1s ease,
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+
+
+  &--1 {
+    bottom: 0;
+  }
+
+  &--2 {
+    bottom: 27%;
+  }
+
+  &--3 {
+    bottom: 54%;
+  }
+}
+
+
+.building__roof {
+  position: absolute;
+
+  left: -4%;
+  bottom: 81%;
+
+  width: 108%;
+  height: 2px;
+
+  background: var(--green);
+
+  transform: rotate(-2deg);
+}
+
+/* Départ : rien n'est construit */
+
+.timeline[data-current-stage='0'] {
+
+  .building__floor,
+  .building__roof {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+}
+
+
+/* Le projet commence à apparaître */
+
+.timeline[data-current-stage='1'] {
+
+  .building__floor--1 {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .building__floor--2,
+  .building__floor--3,
+  .building__roof {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+}
+
+
+/* Construction */
+
+.timeline[data-current-stage='2'] {
+
+  .building__floor--1,
+  .building__floor--2 {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .building__floor--3,
+  .building__roof {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+}
+
+
+/* Le bâtiment prend forme */
+
+.timeline[data-current-stage='3'] {
+
+  .building__floor {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .building__roof {
+    opacity: 1;
+    transform: rotate(-2deg);
+  }
+}
+
+
+/* Le lieu devient habité */
+
+.timeline[data-current-stage='4'] {
+
+  .building__floor {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .building__roof {
+    opacity: 1;
+    transform: rotate(-2deg);
+  }
+
+  .story-world__plant {
+    opacity: 0.45;
+
+    transition:
+      opacity 1.5s ease;
+  }
+}
 
 /* ==========================================================
    TIMELINE
@@ -112,6 +339,8 @@
 
   padding:
     10rem 0 4rem;
+
+  z-index: 1;
 
 
   /* Ligne verticale */
@@ -138,6 +367,8 @@
 }
 
 
+
+
 /* ==========================================================
    MEMORY
 ========================================================== */
@@ -149,13 +380,15 @@
 
   display: grid;
 
+  z-index: 2;
+
   /*
       GAUCHE      FRISE       DROITE
        1fr        120px         1fr
   */
 
   grid-template-columns:
-    minmax(0, 1fr) 120px minmax(0, 1fr);
+    minmax(0, 1fr) 150px minmax(0, 1fr);
 
   align-items: center;
 
